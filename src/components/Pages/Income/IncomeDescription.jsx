@@ -3,13 +3,14 @@ import { getPrice, getDate } from "../../../utils/utils.js";
 import { IncomeItem, Smaller } from "./IncomeDescription.styled.js";
 import { useNavigate } from "react-router-dom";
 import { ButtonList, ButtonRemove } from "../../Buttons/Button.jsx";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { removeOrder } from "../../../redux/slice.js";
 import { Modal } from "../../Modal/Modal.jsx";
+import { selectProducts } from "../../../redux/selectors.js";
 
 export const IncomeDescription = ({ order }) => {
   const date = getDate(order.date);
-  const products = order.products.filter((p) => p.order === order.id);
+  const products = useSelector(selectProducts).filter(product => product.order === order.id);
   const priceUSD = getPrice(products, "USD");
   const priceUAH = getPrice(products, "UAH");
   const navigate = useNavigate();

@@ -25,7 +25,7 @@ export const Groups = () => {
   const orders = useSelector(selectOrders);
   const products = useSelector(selectProducts);
   const { state } = useLocation();
-  const orderId = state ? state.id : 1;
+  const orderId = state ? state.id : orders[0].id;
   const [id, setId] = useState(orderId);
   const [show, setShow] = useState(true);
   const dispatch = useDispatch();
@@ -81,7 +81,7 @@ export const Groups = () => {
             );
           })}
         </List>
-        {show && (
+        {show && order &&(
           <IncomeContainer>
             <ButtonClose handler={() => setShow(false)} />
             <div style={{ padding: 35 + "px" }}>
