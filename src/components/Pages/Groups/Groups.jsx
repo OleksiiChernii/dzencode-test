@@ -30,10 +30,12 @@ export const Groups = () => {
   const [show, setShow] = useState(true);
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
+  const [remove, setRemove] = useState(null);
 
-  const handleRemoveProduct = (orderId, productId) => {
-    dispatch(removeProduct({ orderId, productId }));
-    setShowModal(false)
+  const handleRemoveProduct = () => {
+    dispatch(removeProduct(remove));
+    setShowModal(false);
+    setRemove(null);
   };
 
   const handler = (id) => {
@@ -41,13 +43,18 @@ export const Groups = () => {
     setShow(true);
   };
 
-  const handleClose = () => setShowModal(false)
+  const handleClose = () => setShowModal(false);
   const order = orders.find((order) => order.id === id);
   const filteredProducts = products.filter((p) => p.order === id);
 
   return (
     <>
-    {showModal && <Modal handler={handleRemoveProduct} handleClose={handleClose}/>}
+      {showModal && (
+        <Modal
+          handler={handleRemoveProduct}
+          handleClose={handleClose}
+        />
+      )}
       <SectionTitle title="Продукты" size={products ? products.length : 0} />
       <GroupContainer>
         <List>
@@ -87,7 +94,7 @@ export const Groups = () => {
               {filteredProducts.map((product) => {
                 return (
                   <ProductItem key={product.id} isnew={!!product.isNew}>
-                    <img src={"../../" + product.photo} alt={product.title} />
+                    <img src={product.photo} alt={product.title} />
                     <TitleContainer>
                       <ProductTitle>{product.title}</ProductTitle>
                       <div>SN: {product.serialNumber}</div>
@@ -96,7 +103,13 @@ export const Groups = () => {
                       {product.specification}
                     </div>
                     <ButtonRemove
-                      handler={() => setShowModal(true)}
+                      handler={() => {
+                        setShowModal(true);
+                        setRemove({
+                          orderId: product.order,
+                          productId: product.id,
+                        });
+                      }}
                     />
                   </ProductItem>
                 );

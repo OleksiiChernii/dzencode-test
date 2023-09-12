@@ -1,7 +1,7 @@
 import React from "react";
 import { AsideContainer, List, Item, NavigationLink } from "./AsidePannel.styled";
 
-export const AsidePannel = () => {
+export const NavigationMenu = () => {
   return (
     <AsideContainer className='text-center'>
       <List>

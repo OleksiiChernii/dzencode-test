@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getDate } from "../../../utils/utils";
 import sprite from "../../../icons.svg";
 
-export const Clock = () => {
+export const TopMenu = () => {
   const [date, setDate] = useState(new Date());
 
   useEffect(() => {

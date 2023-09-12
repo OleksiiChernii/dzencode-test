@@ -77,7 +77,7 @@ export const Products = () => {
           return (
             <Item key={product.id} isnew={product.isNew}>
               <div>
-                <img src={"../../" + product.photo} alt={product.title} />
+                <img src={product.photo} alt={product.title} />
               </div>
               <div>
                 <div>

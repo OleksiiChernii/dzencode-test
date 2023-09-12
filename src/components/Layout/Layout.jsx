@@ -1,9 +1,9 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import { AsidePannel } from "./AsidePannel";
+import { NavigationMenu } from "./NavigationMenu";
 import { Container, InputStyled, LogoContainer, Navigation, NavigationContainer } from "./Layout.styled";
 import logo from '../../logo.png';
-import { Clock } from "../Pages/Clock/Clock";
+import { TopMenu } from "../Pages/TopMenu/TopMenu";
 
 export const Layout = () => {
   return (
@@ -16,14 +16,14 @@ export const Layout = () => {
           </LogoContainer>
           <InputStyled type="text" placeholder="Поиск" />
         </Navigation>
-        <Clock/>
+        <TopMenu/>
       </NavigationContainer>
 
       <Container>
         <main className="container">
           <Outlet />
         </main>
-        <AsidePannel />
+        <NavigationMenu />
       </Container>
     </>
   );

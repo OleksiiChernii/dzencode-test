@@ -39,12 +39,10 @@ export const Item = styled.li`
   &.activeOrder::after {
     content: "";
 
-    background-image: url("../right-arrow.svg");
+    background-image: url("right-arrow.svg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: 16px 16px;
-    background-color: #fff;
-    color: #fff;
 
     position: absolute;
     top: 0;
